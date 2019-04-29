@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    padding: 0.1em;
+  }
+
+  button {
+    padding: 3px;
+    margin-top: 20px;
+  }
+}

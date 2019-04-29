@@ -1,3 +1,8 @@
-<p>
-  bank works!
-</p>
+<input type="text" [(ngModel)]="amount" />
+
+<button class="accountDepositButton" (click)="depositMoney()"> Deposit money to my account</button>
+
+<button class="accountWithdrawButton" (click)="withdrawMoney()">Withdraw money from my account</button>
+
+
+<span class="accountBalance">{{balance}}</span>

@@ -7,6 +7,8 @@ import { DataService } from './shared/data.service';
 import { AppComponent } from './app.component';
 import { BankComponent } from './bank/bank.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { BankComponent } from './bank/bank.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
