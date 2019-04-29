@@ -50,6 +50,7 @@ describe('BankComponent', () => {
   });
 
   describe('Mock Service', () => {
+
     it('Should be able to show Balance', () => {
       //arrenge
       let mockService = jasmine.createSpyObj(['getBalance']);
@@ -65,7 +66,7 @@ describe('BankComponent', () => {
       component.showBalance(fakeAccount)
       //assert
 
-      expect(component.balance).toBe(expectedResult);
+      expect(component.account.balance).toBe(expectedResult);
       expect(mockService.getBalance).toHaveBeenCalled();
     });
 

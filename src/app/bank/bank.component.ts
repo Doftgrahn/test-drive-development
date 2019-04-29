@@ -17,14 +17,13 @@ export class BankComponent implements OnInit {
     balance: null,
   };
 
-  balance: number = null;
   amount: Account = null;
 
   constructor(private service: DataService) { }
 
 
   showBalance(account: Account) {
-    this.balance = this.service.getBalance(account)
+    this.account.balance = this.service.getBalance(account)
   }
 
   depositMoney(account: Account, amount: number) {
@@ -36,7 +35,7 @@ export class BankComponent implements OnInit {
   }
 
 
-  ngOnInit() { this.balance }
+  ngOnInit() { }
 
 
 }
