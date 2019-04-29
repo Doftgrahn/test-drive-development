@@ -13,11 +13,12 @@ import Account from '../shared/account';
 export class BankComponent implements OnInit {
 
   account: Account = {
-    customerName: '',
-    balance: null,
+    customerName: 'Leif',
+    balance: 1000,
   };
 
-  amount: Account = null;
+
+  amount: number = null;
 
   constructor(private service: DataService) { }
 

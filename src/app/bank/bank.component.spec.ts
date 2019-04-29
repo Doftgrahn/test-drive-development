@@ -120,13 +120,3 @@ det ska finnas en knapp som kör funktionen när man klickar på den
 det ska finnas en funktion som kan köras för att ta ut det inskrivna beloppet från kontot
 det ska finnas en knapp som kör funktionen när man klickar på den
 */
-
-
-/*
-it('should render title in a h1 tag', () => {
-  fixture.detectChanges();
-  const compiled = fixture.debugElement.nativeElement;
-  expect(compiled.querySelector('h1').textContent).toContain('Hallå eller');
-});
-
-*/

@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ligtblue;
 
   input {
     padding: 0.1em;
@@ -11,5 +12,8 @@
   button {
     padding: 3px;
     margin-top: 20px;
+  }
+  span {
+      margin-top:20px;
   }
 }

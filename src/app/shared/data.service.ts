@@ -44,7 +44,7 @@ export class DataService {
       throw new Error('not a valid customer Name')
     }
     else if (amount > 0) {
-      account.balance += amount;
+      account.balance += +amount;
     }
     else {
       throw new Error('not valid')
@@ -83,7 +83,7 @@ export class DataService {
     }
     else {
       from.balance -= amount;
-      to.balance += amount
+      to.balance += +amount
     }
   }
 }
