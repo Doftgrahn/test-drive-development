@@ -41,8 +41,13 @@ describe('Service', () => {
 
 
   describe('Balance Function', () => {
-    let expected = account.balance;
+    it('Should exist', () => {
+      let actual = service.getBalance(account);
+
+      expect(actual).toBeTruthy()
+    })
     it('Should return Balance', () => {
+      let expected = account.balance;
       let actual = service.getBalance(account);
       expect(actual).toBe(expected)
     });
@@ -86,6 +91,15 @@ describe('Service', () => {
       }
       let danger = () => service.getBalance(nullAccount)
       expect(danger).toThrow()
+    })
+    it('should throw an Error if customerName has whiteSpace', () => {
+      let fakeAccount: Account = {
+        customerName: '  Jensa  ',
+        balance: 430
+      }
+      let actual = () => service.getBalance(fakeAccount);
+
+      expect(actual).toThrow();
     })
 
   });
@@ -264,9 +278,7 @@ describe('Service', () => {
         balance: 500
       }
       let failAmount = 501;
-
       let actual = () => service.transfer(failFrom, to, failAmount);
-
       expect(actual).toThrow();
 
     })

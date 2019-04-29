@@ -28,6 +28,9 @@ export class DataService {
     else if (isNaN(account.balance) || account.balance === null) {
       throw new Error('Account.balance cannot be a NaN or null')
     }
+    else if (account.customerName !== account.customerName.trim()) {
+      throw new Error('enter Correct CustomerName')
+    }
     else {
       return account.balance;
     }
