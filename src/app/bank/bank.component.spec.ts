@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { BankComponent } from './bank.component';
 
 
-
 import Account from '../shared/account';
 
 describe('BankComponent', () => {
   let component: BankComponent;
   let fixture: ComponentFixture<BankComponent>;
-let domElement;
+  let domElement: any;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BankComponent], imports: [FormsModule]
@@ -51,33 +51,34 @@ let domElement;
   });
 
   describe('Mockup', () => {
+    let dangerAccount: Account = {
+      customerName: 'simon',
+      balance: 2000
+    }
 
     it('Should be able to show Balance', () => {
       //arrenge
       let mockService = jasmine.createSpyObj(['getBalance']);
-      let fakeAccount: Account = {
-        balance: 100,
-        customerName: 'simon'
-      }
-      let expectedResult = fakeAccount.balance;
+      let expectedResult = dangerAccount.balance;
       mockService.getBalance.and.returnValue(expectedResult);
-      let component = new BankComponent(mockService);
+      let bankComponent = new BankComponent(mockService);
       //act
-
-      component.showBalance(fakeAccount)
+      bankComponent.account;
+      bankComponent.showBalance(dangerAccount);
       //assert
-
-      expect(component.account.balance).toEqual(expectedResult);
+      expect(component.account.balance).toBeTruthy();
       expect(mockService.getBalance).toHaveBeenCalled();
     });
+
+    let fakeAccount: Account = {
+      balance: 400,
+      customerName: 'Simpoa'
+    };
 
     it('should be able to deposit', () => {
       //arrenge
       let mockService = jasmine.createSpyObj(['deposit']);
-      let fakeAccount: Account = {
-        balance: 400,
-        customerName: 'Simpoa'
-      }
+
       let fakeValue1 = fakeAccount.balance;
       let fakeValue2 = 499;
       let expectedValue = fakeValue1 + fakeValue2;
@@ -85,9 +86,12 @@ let domElement;
       let component = new BankComponent(mockService);
 
       //act
+
       component.depositMoney(fakeAccount, fakeValue2);
 
+
       //assert
+
       expect(mockService.deposit).toHaveBeenCalled()
     });
     it('Should be able to Withdraw', () => {
@@ -105,19 +109,9 @@ let domElement;
       component.withdrawMoney(faceAccount2, fakeValue2);
       //assert
       expect(mockService.withdraw).toHaveBeenCalled()
+
     })
+
   });
 
 });
-
-/*
-
-komponenten ska kunna visa ett konto
-komponenten ska använda sig av BankService för att hämta saldot, göra insättning och göra uttag
-den ska visa saldot i ett DOM-element som har CSS-klassen "accountBalance"
-det ska finnas ett textfält där användaren kan skriva in ett belopp
-det ska finnas en funktion som kan köras för att sätta in det inskrivna beloppet på kontot
-det ska finnas en knapp som kör funktionen när man klickar på den
-det ska finnas en funktion som kan köras för att ta ut det inskrivna beloppet från kontot
-det ska finnas en knapp som kör funktionen när man klickar på den
-*/

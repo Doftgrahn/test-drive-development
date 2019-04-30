@@ -11,25 +11,28 @@ import Account from '../shared/account';
   styleUrls: ['./bank.component.scss']
 })
 export class BankComponent implements OnInit {
+  account: Account;
+  amount: number = null;
+  balance: number;
 
-  account: Account = {
-    customerName: 'Leif',
-    balance: 1000,
-  };
+
+
 
   ngOnInit() {
-    //this.account = this.service.customerAccount;
+    this.account = {
+      customerName: this.service.customerAccount.customerName,
+      balance: this.service.customerAccount.balance
+    };
   }
 
 
-  amount: number = null;
-
   constructor(private service: DataService) {
+
 
   }
 
   showBalance(account: Account) {
-    this.account.balance = this.service.getBalance(account)
+    this.balance = this.service.getBalance(account)
   }
 
   depositMoney(account: Account, amount: number) {

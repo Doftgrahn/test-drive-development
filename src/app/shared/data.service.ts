@@ -7,15 +7,13 @@ import Account from './account';
 })
 export class DataService {
 
+
   customerAccount: Account = {
-    customerName: 'Leif',
+    customerName: 'Jens',
     balance: 200,
   }
 
-  customerAccount2: Account = {
-    customerName: 'Simon',
-    balance: 0,
-  }
+
 
 
   getBalance(account: Account): number {
