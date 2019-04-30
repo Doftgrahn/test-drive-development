@@ -38,6 +38,12 @@ export class DataService {
     else if (account.customerName === '' || account.customerName === typeof Boolean) {
       throw new Error('not a valid customer Name')
     }
+    else if (amount === 42) {
+      throw new Error('This Number is the meaning of life, and is therefore not allowed because life has no meaning, only death.')
+    }
+    else if (amount >= 10000) {
+      throw new Error('Money Laundry is not allowed')
+    }
     else if (amount > 0) {
       account.balance += +amount;
     }
@@ -47,7 +53,7 @@ export class DataService {
   }
 
   withdraw(account: Account, amount: number): void {
-    if (isNaN(amount) || amount === null || amount >= 10000 || amount < 0) {
+    if (isNaN(amount) || amount === null || amount >= 10000 || amount < 0 || amount === 42) {
       throw new Error('not a valid withdrawal')
     }
     else if (account.customerName === typeof Number) {
@@ -68,13 +74,16 @@ export class DataService {
       throw new Error('Cannot be Null')
     }
     else if (amount >= 10000) {
-      throw new Error('Cannot deposit over 10 000')
+      throw new Error('Cannot deposit over 10 000, no money laundry please')
     }
     else if (isNaN(from.balance) || isNaN(to.balance) || isNaN(amount)) {
       throw new Error('Cannot be NaN')
     }
     else if (amount > from.balance) {
       throw new Error('must have a valid balance to be able to transfer')
+    }
+    else if (amount === 42 || to.balance === 42 || amount === 42) {
+      throw new Error('42 is not a number, its the meaning with life')
     }
     else {
       from.balance -= amount;

@@ -15,21 +15,11 @@ export class BankComponent implements OnInit {
   amount: number = null;
   balance: number;
 
-
-
-
   ngOnInit() {
-    this.account = {
-      customerName: this.service.customerAccount.customerName,
-      balance: this.service.customerAccount.balance
-    };
+    this.account = this.service.customerAccount
   }
 
-
-  constructor(private service: DataService) {
-
-
-  }
+  constructor(private service: DataService) { }
 
   showBalance(account: Account) {
     this.balance = this.service.getBalance(account)
@@ -45,8 +35,5 @@ export class BankComponent implements OnInit {
     this.amount = null;
 
   }
-
-
-
 
 }
