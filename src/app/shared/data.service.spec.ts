@@ -5,16 +5,20 @@ import Account from './account';
 
 describe('Service', () => {
   let service: DataService;
+  let account: Account;
+  let amount: number;
+
   beforeEach(() => {
     TestBed.configureTestingModule({})
     service = TestBed.get(DataService);
   });
 
-  let account: Account = {
+  account = {
     balance: 200,
     customerName: 'Simmmmon'
-  }
-  let amount: number = 300;
+  };
+
+  amount = 300;
 
   describe('Account Details', () => {
 
@@ -158,6 +162,7 @@ describe('Service', () => {
         customerName: 'hej'
       };
       dangerAccount.customerName = typeof Boolean;
+      service.getBalance(account);
       let actual = () => service.deposit(dangerAccount, amount);
       expect(actual).toThrow();
     });
@@ -213,7 +218,7 @@ describe('Service', () => {
     it('should throw an Error if amount is 42', () => {
       let danger42Ammount: number = 42;
       let actual = () => service.withdraw(account, danger42Ammount);
-      expect(actual).toThrow()
+      expect(actual).toThrow();
     })
 
     it('should throw error if amount is higher than account.balance', () => {
@@ -223,6 +228,7 @@ describe('Service', () => {
       };
       let amount = 301
       let actual = () => service.withdraw(danger, amount);
+      service.getBalance(account)
       expect(actual).toThrow();
     });
   });
@@ -334,14 +340,9 @@ describe('Service', () => {
       let actual = () => service.transfer(failFrom, to, failAmount);
       expect(actual).toThrow();
 
+
     });
+
   });
+
 });
-
-
-
-
-
-
-
-//

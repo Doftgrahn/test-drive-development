@@ -6,16 +6,21 @@
     <p>{{account.balance}}</p>
   </div>
 
+
   <div>
     <label for="amount">enter amount:</label>
     <input id="amount" type="text" [(ngModel)]="amount" placeholder="enter your amount" />
   </div>
 
+
   <button class="accountDepositButton" (click)="depositMoney(account,amount)"> Deposit money to my account</button>
+
 
   <button class="accountWithdrawButton" (click)="withdrawMoney(account,amount)">Withdraw money from my account</button>
 
+
   <p class="accountBalance">{{account.balance}}</p>
+
 
 
 </main>
