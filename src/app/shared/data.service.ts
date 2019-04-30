@@ -8,8 +8,8 @@ import Account from './account';
 export class DataService {
 
   customerAccount: Account = {
-    customerName: 'Simon',
-    balance: 1,
+    customerName: 'Leif',
+    balance: 200,
   }
 
   customerAccount2: Account = {
@@ -17,9 +17,6 @@ export class DataService {
     balance: 0,
   }
 
-  sameCustomer(c1: Account, c2: Account): boolean {
-    return c1.customerName === c2.customerName ? true : false;
-  }
 
   getBalance(account: Account): number {
     if (account.customerName !== account.customerName.trim() || account.customerName === '') {
@@ -58,7 +55,7 @@ export class DataService {
     else if (account.customerName === typeof Number) {
       throw new Error('Cannot go under 0, or CustomerName is of type Number')
     }
-    else if (account.balance <= amount) {
+    else if (account.balance < amount) {
       throw new Error('Cannot withdraw more than what you have on your account')
     } else {
       account.balance -= amount

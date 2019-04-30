@@ -3,13 +3,14 @@ import { FormsModule } from '@angular/forms';
 
 import { BankComponent } from './bank.component';
 
+
+
 import Account from '../shared/account';
 
 describe('BankComponent', () => {
   let component: BankComponent;
   let fixture: ComponentFixture<BankComponent>;
-  let domElement;
-
+let domElement;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [BankComponent], imports: [FormsModule]
@@ -49,7 +50,7 @@ describe('BankComponent', () => {
     })
   });
 
-  describe('Mock Service', () => {
+  describe('Mockup', () => {
 
     it('Should be able to show Balance', () => {
       //arrenge
@@ -66,7 +67,7 @@ describe('BankComponent', () => {
       component.showBalance(fakeAccount)
       //assert
 
-      expect(component.account.balance).toBe(expectedResult);
+      expect(component.account.balance).toEqual(expectedResult);
       expect(mockService.getBalance).toHaveBeenCalled();
     });
 

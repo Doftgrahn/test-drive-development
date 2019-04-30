@@ -1,13 +1,21 @@
-<div>
-  <h2>You Account</h2>
-  <p>{{account.customerName}}</p>
-  <p>{{account.balance}}</p>
-</div>
+<main>
 
-<input type="text" [(ngModel)]="amount" placeholder="enter your amount" />
+  <div>
+    <h2>You Account</h2>
+    <p>{{account.customerName}}</p>
+    <p>{{account.balance}}</p>
+  </div>
 
-<button class="accountDepositButton" (click)="depositMoney(account,amount)"> Deposit money to my account</button>
+  <div>
+    <label for="amount">enter amount:</label>
+    <input id="amount" type="text" [(ngModel)]="amount" placeholder="enter your amount" />
+  </div>
 
-<button class="accountWithdrawButton" (click)="withdrawMoney(account,amount)">Withdraw money from my account</button>
+  <button class="accountDepositButton" (click)="depositMoney(account,amount)"> Deposit money to my account</button>
 
-<span class="accountBalance">{{account.balance}}</span>
+  <button class="accountWithdrawButton" (click)="withdrawMoney(account,amount)">Withdraw money from my account</button>
+
+  <p class="accountBalance">{{account.balance}}</p>
+
+
+</main>

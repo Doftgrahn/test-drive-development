@@ -1,11 +1,32 @@
-:host {
+main {
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ligtblue;
+  background-color: lightblue;
+  width: 50%;
+  margin: 0 auto;
+
+  div {
+    h2 {
+      font-weight: bold;
+      text-align: left;
+    }
+
+    p {
+      margin: 10px 0 0;
+    }
+  }
+
+  label {
+    margin-right: 10px;
+    margin-top: 20px;
+  }
 
   input {
+    font-size: 18px;
+    margin-top: 20px;
     padding: 0.1em;
   }
 
@@ -13,7 +34,8 @@
     padding: 3px;
     margin-top: 20px;
   }
+
   span {
-      margin-top:20px;
+    margin-top: 20px;
   }
 }

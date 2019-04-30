@@ -17,11 +17,16 @@ export class BankComponent implements OnInit {
     balance: 1000,
   };
 
+  ngOnInit() {
+    //this.account = this.service.customerAccount;
+  }
+
 
   amount: number = null;
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService) {
 
+  }
 
   showBalance(account: Account) {
     this.account.balance = this.service.getBalance(account)
@@ -29,14 +34,16 @@ export class BankComponent implements OnInit {
 
   depositMoney(account: Account, amount: number) {
     this.service.deposit(account, amount)
+    this.amount = null;
   }
 
   withdrawMoney(account: Account, amount: number): void {
-    this.service.withdraw(account, amount)
+    this.service.withdraw(account, amount);
+    this.amount = null;
+
   }
 
 
-  ngOnInit() { }
 
 
 }
