@@ -13,19 +13,19 @@ import Account from '../shared/account';
 export class BankComponent implements OnInit {
   account: Account;
   amount: number = null;
-  balance: number;
+  balance: number = null;
 
   ngOnInit() {
-    this.account = this.service.customerAccount
+    this.account = this.service.customerAccount;
   }
 
   constructor(private service: DataService) { }
 
-  showBalance(account: Account) {
-    this.balance = this.service.getBalance(account)
+  showBalance(account: Account):number {
+    return this.balance = this.service.getBalance(account)
   }
 
-  depositMoney(account: Account, amount: number) {
+  depositMoney(account: Account, amount: number):void {
     this.service.deposit(account, amount)
     this.amount = null;
   }

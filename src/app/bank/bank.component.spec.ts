@@ -58,15 +58,17 @@ describe('BankComponent', () => {
 
     it('Should be able to show Balance', () => {
       //arrenge
+
       let mockService = jasmine.createSpyObj(['getBalance']);
       let expectedResult = dangerAccount.balance;
       mockService.getBalance.and.returnValue(expectedResult);
       let bankComponent = new BankComponent(mockService);
       //act
-      bankComponent.account;
       bankComponent.showBalance(dangerAccount);
+      component.account = dangerAccount
       //assert
-      expect(component.account.balance).toBeTruthy();
+
+      expect(component.account.balance).toBe(expectedResult)
       expect(mockService.getBalance).toHaveBeenCalled();
     });
 
@@ -77,38 +79,38 @@ describe('BankComponent', () => {
 
     it('should be able to deposit', () => {
       //arrenge
-      let mockService = jasmine.createSpyObj(['deposit']);
+      let mockService = jasmine.createSpyObj(['deposit', 'getBalance']);
 
       let fakeValue1 = fakeAccount.balance;
       let fakeValue2 = 499;
       let expectedValue = fakeValue1 + fakeValue2;
       mockService.deposit.and.returnValue(expectedValue);
       let component = new BankComponent(mockService);
-
       //act
-
       component.depositMoney(fakeAccount, fakeValue2);
-
-
+      component.account = fakeAccount;
       //assert
-
-      expect(mockService.deposit).toHaveBeenCalled()
+      expect(component.account.balance + fakeValue2).toBe(expectedValue);
+      expect(mockService.deposit).toHaveBeenCalled();
     });
     it('Should be able to Withdraw', () => {
+      //arrenge
       let mockService = jasmine.createSpyObj(['withdraw']);
       let faceAccount2: Account = {
-        balance: 300,
+        balance: 700,
         customerName: 'Servera'
-      }
+      };
       let fakeValue1 = faceAccount2.balance;
       let fakeValue2 = 400;
       let expectedValue = fakeValue1 - fakeValue2;
-      mockService.withdraw.and.returnValue(expectedValue);
+      mockService.withdraw
       let component = new BankComponent(mockService);
       //act
       component.withdrawMoney(faceAccount2, fakeValue2);
+      component.account = faceAccount2;
       //assert
-      expect(mockService.withdraw).toHaveBeenCalled()
+      expect(component.account.balance - fakeValue2).toBe(expectedValue);
+      expect(mockService.withdraw).toHaveBeenCalledWith(faceAccount2, fakeValue2);
 
     })
 

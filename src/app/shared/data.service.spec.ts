@@ -45,7 +45,6 @@ describe('Service', () => {
       let actual = service.customerAccount.customerName;
       expect(actual).not.toBe(emptyString);
     });
-
   });
 
 
@@ -78,7 +77,7 @@ describe('Service', () => {
         customerName: ''
       };
       let danger = () => service.getBalance(emptyString);
-      expect(danger).toThrow()
+      expect(danger).toThrow();
     });
 
     it('should only accept numbers', () => {
@@ -116,12 +115,24 @@ describe('Service', () => {
 
 
   describe('Deposit function', () => {
-    let amount: number = 550;
+
     it('Should exist', () => {
-      let actual = service.deposit(service.customerAccount, amount);
-      expect(actual).toBe(actual);
+      expect(service.deposit).toBeDefined();
     });
 
+    it('should return amount + balance', () => {
+      let fakeAccount: Account = {
+        balance: 300,
+        customerName: 'somom'
+      };
+      let amount = 200;
+      let expectedValue = fakeAccount.balance + amount;
+      service.deposit(fakeAccount, amount)
+      let actual = service.getBalance(fakeAccount)
+      expect(actual).toBe(expectedValue);
+    });
+
+ 
     it('should throw an error if deposit below 0', () => {
       let lowest = -0.9999;
       let actual = () => service.deposit(account, lowest);
@@ -144,7 +155,7 @@ describe('Service', () => {
 
     it('should not be able to deposit null', () => {
       let actual = () => service.deposit(account, null);
-      expect(actual).not.toBeNull();
+      expect(actual).toThrow();
     });
 
     it('should throw an error if account.customerName is an empty string', () => {
@@ -183,6 +194,18 @@ describe('Service', () => {
       let actual = service.withdraw(account, amount);
       expect(actual).toBe(service.withdraw(account, amount));
     });
+
+    it('should withdraw balance from account', () => {
+      let fakeAccount: Account = {
+        balance: 300,
+        customerName: 'Jens'
+      };
+      let amount = 100;
+      let expectedValue = fakeAccount.balance - amount;
+      service.withdraw(fakeAccount, amount)
+      let actual = service.getBalance(fakeAccount);
+      expect(actual).toBe(expectedValue)
+    })
 
     it('should throw error if withdraw is NaN', () => {
       let actual = () => service.withdraw(account, NaN);
@@ -248,6 +271,23 @@ describe('Service', () => {
       let actual = service.transfer(from, to, amount);
       expect(actual).toBe(actual);
     });
+
+    it('should withdrawmoney from one account, and deposit to another', () => {
+      let fakeAccount1From: Account = {
+        balance: 300,
+        customerName: 'Jens'
+      }
+      let fakeAccount2To: Account = {
+        balance: 200,
+        customerName: 'noone'
+      }
+      let amount: number = 50;
+      let expectFrom = fakeAccount1From.balance - amount;
+      let expectTo = fakeAccount2To.balance + amount;
+      service.transfer(fakeAccount1From, fakeAccount2To, amount);
+
+      // TODO:
+    })
 
     it('should throw error if TO is zero', () => {
       let dangerTo: Account = {
@@ -328,7 +368,7 @@ describe('Service', () => {
         customerName: 'Mr. Towel'
       };
       let actual = () => service.transfer(fail42Account, to, amount);
-      expect(actual).toThrow()
+      expect(actual).toThrow();
     });
 
     it('should throw Error if Amount is higher than from', () => {
@@ -339,7 +379,6 @@ describe('Service', () => {
       let failAmount = 501;
       let actual = () => service.transfer(failFrom, to, failAmount);
       expect(actual).toThrow();
-
 
     });
 

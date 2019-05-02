@@ -57,8 +57,8 @@ export class DataService {
     else if (account.customerName === typeof Number) {
       throw new Error('Cannot go under 0, or CustomerName is of type Number')
     }
-    else if(amount === 42) {
-        throw new Error('42 is the meanong of life')
+    else if (amount === 42) {
+      throw new Error('42 is the meanong of life')
     }
     else if (account.balance < amount) {
       throw new Error('Cannot withdraw more than what you have on your account')
